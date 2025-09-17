@@ -22,7 +22,7 @@ jobs:
           
       - name: Convert notebook to HTML
         run: |
-          jupyter nbconvert --to html titanic.ipynb
+          jupyter nbconvert --to html Titanic.ipynb
           mv titanic.html index.html
           
       - name: Set AWS credentials
