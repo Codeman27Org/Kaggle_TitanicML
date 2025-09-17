@@ -23,7 +23,6 @@ jobs:
       - name: Convert notebook to HTML
         run: |
           jupyter nbconvert --to html Titanic.ipynb
-          mv Titanic.html titanic.html
           
       - name: Set AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -32,8 +31,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
           
-      - name: Deploy only titanic.html to S3
-        run: aws s3 cp titanic.html s3://${{ secrets.S3_BUCKET }}/titanic.html --delete
+      - name: Deploy only Titanic.html to S3
+        run: aws s3 cp Titanic.html s3://${{ secrets.S3_BUCKET }}/Titanic.html
         
       - name: Invalidate cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/titanic.html"
