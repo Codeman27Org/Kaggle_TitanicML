@@ -33,7 +33,7 @@ jobs:
           aws-region: us-east-1
           
       - name: Deploy only titanic.html to S3
-        run: aws s3 cp index.html s3://${{ secrets.S3_BUCKET }}/titanic.html
+        run: aws s3 cp titanic.html s3://${{ secrets.S3_BUCKET }}/titanic.html
         
       - name: Invalidate cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/titanic.html"
